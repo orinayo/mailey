@@ -1,0 +1,23 @@
+.nav-wrapper {
+  background-image: linear-gradient(
+    to left,
+    #f7c572,
+    #f4b142
+  );
+}
+
+.brand-logo {
+  text-transform: uppercase;
+  letter-spacing: .5rem;
+  font-weight: 300;
+}
+
+.btn {
+  background-color: #4285F4;
+  border-radius: 100px;
+}
+
+.btn:hover {
+  background-color: #42def4;
+}
+

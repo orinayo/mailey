@@ -28,21 +28,18 @@ passport.use(
     proxy: true
   },
   // Pass tokens and profile object received from GoogleOAuth
-  (accessToken, refreshToken, profile, done) => {
+  async (accessToken, refreshToken, profile, done) => {
     // Check if user already exists
-    User.findOne({
+    const existingUser = await User.findOne({
       googleId: profile.id
     })
-      .then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser)
-        }
-        // No user exists, make new record
-        new User({
-          googleId: profile.id
-        })
-          .save()
-          .then(user => done(user))
-      })
+    if (existingUser) {
+      return done(null, existingUser)
+    }
+    // No user exists, make new record
+    const user = await new User({
+      googleId: profile.id
+    }).save()
+    done(null, user)
   })
 )
