@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Header.css'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import StripeBilling from '../StripeBilling/StripeBilling'
 // mapStateToProps function connects state from the store
 // to corresponding props of the app
 const mapStateToProps = ({ auth }) => {
@@ -18,26 +19,28 @@ class Header extends Component {
         return
       case false:
         return (
-          <ul className='right'>
-            <li style={{marginRight: '1.5rem'}}>
-              <a href='/auth/google' className='waves-effect waves-light btn'>
-                Login With Google
-                <i className='fab fa-google right' style={{lineHeight: '2.5rem'}}>
-                </i>
-              </a>
-            </li>
-          </ul>
+          <li style={{marginRight: '1.5rem'}}>
+            <a href='/auth/google' className='waves-effect waves-light btn'>
+              Login With Google
+              <i className='fab fa-google right' style={{lineHeight: '2.5rem'}}>
+              </i>
+            </a>
+          </li>
         )
       default:
-        return (
-          <ul className='right'>
-            <li style={{marginRight: '1.5rem'}}>
-              <a href='/api/logout' className='waves-effect waves-light btn'>
-                  Logout
-              </a>
-            </li>
-          </ul>
-        )
+        return [
+          <li key='1' style={{margin: '.2rem 1.5rem'}}>
+            CREDITS: {auth.credits}
+          </li>,
+          <li key='2'>
+            <StripeBilling />
+          </li>,
+          <li key='3' style={{marginRight: '1.5rem'}}>
+            <a href='/api/logout' className='waves-effect waves-light btn'>
+              Logout
+            </a>
+          </li>
+        ]
     }
   }
   render () {
@@ -51,9 +54,11 @@ class Header extends Component {
           >
             Mailey
           </Link>
-          {
-            this.renderContent()
-          }
+          <ul className='right'>
+            {
+              this.renderContent()
+            }
+          </ul>
         </div>
       </nav>
     )
