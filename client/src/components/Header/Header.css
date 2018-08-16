@@ -12,7 +12,7 @@
   font-weight: 300;
 }
 
-.btn {
+.btn, .btn:focus {
   background-color: #4285F4;
   border-radius: 100px;
 }
@@ -20,4 +20,3 @@
 .btn:hover {
   background-color: #42def4;
 }
-

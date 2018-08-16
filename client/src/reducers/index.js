@@ -4,6 +4,6 @@ import surveysReducer from './surveysReducer'
 
 // Combine all reducers into, then pass it to store
 export default combineReducers({
-  authReducer,
-  surveysReducer
+  auth: authReducer,
+  surveys: surveysReducer
 })

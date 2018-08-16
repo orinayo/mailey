@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
 const helmet = require('helmet')
+const morgan = require('morgan')
 const keys = require('./config/keys')
 require('./models/User')
 // Import Passport configuration
@@ -37,10 +38,12 @@ app.use(
 )
 
 app.use(helmet())
+app.use(morgan('combined'))
 
 app.use(passport.initialize())
 app.use(passport.session())
 // Immediately Invoke authRoutes function
 require('./routes/authRoutes')(app)
 
-app.listen(process.env.PORT || 5000)
+const port = process.env.PORT || 5000
+app.listen(port, () => console.log(`Listening on ${port}`))

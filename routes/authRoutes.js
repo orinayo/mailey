@@ -12,7 +12,10 @@ module.exports = app => {
   // using GoogleOAuth
   app.get(
     '/auth/google/callback',
-    passport.authenticate('google')
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/surveys')
+    }
   )
   // GET request for user logging out
   app.get(
@@ -20,7 +23,7 @@ module.exports = app => {
     (req, res) => {
       // Use logout function provided by passport to destroy cookie
       req.logout()
-      res.send(req.user)
+      res.redirect('/')
     }
   )
   // GET request for retrieving user
