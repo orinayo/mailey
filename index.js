@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
 const helmet = require('helmet')
+const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const keys = require('./config/keys')
 require('./models/User')
@@ -39,11 +40,26 @@ app.use(
 
 app.use(helmet())
 app.use(morgan('combined'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(passport.initialize())
 app.use(passport.session())
 // Immediately Invoke authRoutes function
 require('./routes/authRoutes')(app)
+require('./routes/billingRoutes')(app)
+
+if (process.env.NODE_ENV === 'production') {
+  // Express will serve production assets (main.js, main.css)
+  app.use(express.static('client/build'))
+  // Express will serve index.html if it doesn't recognize route
+  const path = require('path')
+  app.get('*', (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, 'client', 'build', 'index.html')
+    )
+  })
+}
 
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Listening on ${port}`))
