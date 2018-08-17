@@ -1,15 +1,5 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/node:8.9
-    working_directory: ~/server/client
-    steps:
-      - checkout:
-          path: ~/server
-      - run: echo "npm installing"
-      - run: npm install
-      - run: CI=true npm run build
   test:
     docker:
       - image: circleci/node:8.9
@@ -20,6 +10,16 @@ jobs:
       - run: echo "testing"
       - run: npm install
       - run: npm test
+  build:
+    docker:
+      - image: circleci/node:8.9
+    working_directory: ~/server/client
+    steps:
+      - checkout:
+          path: ~/server
+      - run: echo "npm installing"
+      - run: npm install
+      - run: CI=true npm run build
   deploy:
     docker:
       - image: buildpack-deps:trusty
@@ -28,13 +28,17 @@ jobs:
       - run:
           name: Deploy Master to Heroku
           command: |
+            git config credential.helper 'cache --timeout=120'
+            git config user.email "orinayooyelade@gmail.com"
+            git config user.name "orinayo"
+            git commit -m "Trigger deployment"
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
 workflows:
   version: 2
-  build_test:
+  test_build_deploy:
     jobs:
-      - build
       - test
+      - build
       - deploy:
           requires:
             - build
