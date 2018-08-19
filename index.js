@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const keys = require('./config/keys')
 require('./models/User')
+require('./models/Survey')
 // Import Passport configuration
 require('./services/passport')
 
@@ -48,6 +49,7 @@ app.use(passport.session())
 // Immediately Invoke authRoutes function
 require('./routes/authRoutes')(app)
 require('./routes/billingRoutes')(app)
+require('./routes/surveyRoutes')(app)
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve production assets (main.js, main.css)

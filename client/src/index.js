@@ -15,4 +15,3 @@ window.axios = axios
 const logger = createLogger()
 const store = createStore(reducers, {}, applyMiddleware(thunkMiddleware, logger))
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.querySelector('#root'))
-
