@@ -16,3 +16,13 @@ export const handleToken = token => async dispatch => {
     type: FETCH_USER, payload: res.data
   })
 }
+
+export const submitSurvey = (values, history) => async dispatch => {
+  const res = await axios.post('/api/surveys', values)
+
+  // Redirect with React router history
+  history.push('/surveys')
+  dispatch({
+    type: FETCH_USER, payload: res.data
+  })
+}

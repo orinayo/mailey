@@ -6,6 +6,7 @@ import Header from '../components/Header/Header'
 import LandingPage from '../components/LandingPage/LandingPage'
 import Dashboard from '../components/Dashboard/Dashboard'
 import SurveyNew from '../components/Surveys/SurveyNew'
+import './App.css'
 
 class App extends Component {
   componentDidMount () {
@@ -14,7 +15,7 @@ class App extends Component {
 
   render () {
     return (
-      <div className=''>
+      <div>
         <BrowserRouter>
           <div>
             <Header />

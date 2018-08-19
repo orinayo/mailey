@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './Header.css'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import StripeBilling from '../StripeBilling/StripeBilling'
@@ -20,7 +19,7 @@ class Header extends Component {
       case false:
         return (
           <li style={{marginRight: '1.5rem'}}>
-            <a href='/auth/google' className='waves-effect waves-light btn'>
+            <a href='/auth/google' className='waves-effect waves-light btn btn-round'>
               Login With Google
               <i className='fab fa-google right' style={{lineHeight: '2.5rem'}}>
               </i>
@@ -36,7 +35,7 @@ class Header extends Component {
             <StripeBilling />
           </li>,
           <li key='3' style={{marginRight: '1.5rem'}}>
-            <a href='/api/logout' className='waves-effect waves-light btn'>
+            <a href='/api/logout' className='waves-effect waves-light btn btn-round'>
               Logout
             </a>
           </li>

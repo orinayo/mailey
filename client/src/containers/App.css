@@ -1,0 +1,91 @@
+/* NAVBAR */
+.nav-wrapper {
+  background-image: linear-gradient(
+    to left,
+    #f7c572,
+    #f4b142
+  );
+}
+/* HEADER */
+.brand-logo {
+  text-transform: uppercase;
+  letter-spacing: .5rem;
+  font-weight: 300;
+}
+/* BUTTONS */
+.btn, .btn:focus {
+  background-color: #4285F4;
+}
+
+.btn:hover {
+  background-color: #42def4;
+}
+
+.fixed-action-button {
+  transition: all .2s;
+}
+
+.btn-floating, .btn-floating:focus {
+  background-color: #f1122c;
+}
+
+.btn-floating:hover {
+  background-color: #f44257;
+  transform: translateY(-2px);
+}
+
+.btn-floating:active {
+  transform: translateY(0px);
+}
+
+.btn-flat {
+  color: black;
+  background-size: 200%;
+  transition: all .4s;
+}
+
+.btn-success {
+  border: 1px solid #4285F4;
+}
+
+.btn-success:hover {
+  background-position: 100%;
+  background-image: linear-gradient(
+    60deg,
+    transparent 0%,
+    transparent 40%,
+    #4285F4 40%);
+  color: white;
+}
+
+.btn-cancel {
+  border: 1px solid #f1122c;
+}
+
+.btn-cancel:hover {
+  background-position: 100%;
+  background-image: linear-gradient(
+    60deg,
+    transparent 0%,
+    transparent 40%,
+    #f1122c 40%);
+  color: white;
+}
+
+.btn-round {
+  border-radius: 100px;
+}
+
+/* UTILITIES */
+.u-margin-top-small {
+  margin-top: 2rem!important;
+}
+
+.u-margin-top-medium {
+  margin-top: 4rem!important;
+}
+
+.u-margin-bottom-xsmall {
+  margin-bottom: .75rem!important;
+}
+
