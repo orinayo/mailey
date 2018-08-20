@@ -76,6 +76,15 @@
   border-radius: 100px;
 }
 
+/* CARD */
+.card {
+  background-image: linear-gradient(
+    to right bottom,
+    #172493,
+    #481793
+  )
+}
+
 /* UTILITIES */
 .u-margin-top-small {
   margin-top: 2rem!important;

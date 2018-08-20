@@ -1,3 +1,6 @@
+const _ = require('lodash')
+const Path = require('path-parser').default
+const { URL } = require('url')
 const requireLogin = require('../middlewares/requireLogin')
 const requireCredits = require('../middlewares/requireCredits')
 const mongoose = require('mongoose')
@@ -6,9 +9,58 @@ const Mailer = require('../services/Mailer')
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate')
 
 module.exports = app => {
-  app.get('/api/surveys/:id/:response', (req, res) => {
+  // GET request for retrieving user's surveys
+  app.get('/api/surveys', requireLogin, async (req, res) => {
+    const surveys = await Survey.find({
+      _user: req.user.id
+    })
+      .select({ recipients: false })
+
+    res.send(surveys)
+  })
+
+  // GET request for handling user redirect after voting in survey
+  app.get('/api/surveys/:surveyId/:choice', (req, res) => {
     res.send('Thanks for voting')
   })
+
+  // POST request for handling sendgrid webhooks
+  app.post('/api/surveys/webhooks', (req, res) => {
+    // Path to filter extracted paths
+    const p = new Path('/api/surveys/:surveyId/:choice')
+
+    _.chain(req.body)
+      .map(({ email, url }) => {
+        // Extract path from URL and return matching paths
+        // discard records without surveyId and choice
+        const match = p.test(new URL(url).pathname)
+        if (match) {
+          return {
+            email,
+            surveyId: match.surveyId,
+            choice: match.choice
+          }
+        }
+      })
+      .compact() // Remove all falsey values
+      .uniqBy('email', 'surveyId') // Remove duplicates
+      .each(({ surveyId, email, choice }) => {
+        Survey.updateOne({
+          _id: surveyId,
+          recipients: {
+            $elemMatch: { email: email, responded: false }
+          }
+        },
+        {
+          $inc: { [choice]: 1 },
+          $set: { 'recipients.$.responded': true },
+          lastResponded: new Date()
+        }).exec()
+      })
+      .value() // Return value
+    res.send({})
+  })
+
   // POST request for creating and sending a Survey
   app.post(
     '/api/surveys',
