@@ -14,6 +14,7 @@ module.exports = app => {
     const surveys = await Survey.find({
       _user: req.user.id
     })
+      .sort({dateSent: -1})
       .select({ recipients: false })
 
     res.send(surveys)
@@ -52,7 +53,7 @@ module.exports = app => {
           }
         },
         {
-          $inc: { [choice]: 1 },
+          $inc: { [choice]: 1, total: 1 },
           $set: { 'recipients.$.responded': true },
           lastResponded: new Date()
         }).exec()
@@ -67,9 +68,10 @@ module.exports = app => {
     requireLogin,
     requireCredits,
     async (req, res) => {
-      const { title, subject, body, recipients } = req.body
+      const { title, subject, body, recipients, fromEmail } = req.body
       const survey = new Survey({
         title,
+        fromEmail,
         subject,
         body,
         recipients: recipients.split(',').map(email => (
@@ -91,6 +93,19 @@ module.exports = app => {
       } catch (err) {
         res.status(422).send(err)
       }
+    }
+  )
+
+  // DELETE request for a single Survey
+  app.delete(
+    '/api/surveys/:id',
+    requireLogin,
+    async (req, res) => {
+      await Survey.deleteOne({
+        _id: req.params.id
+      })
+
+      res.status(201).send({})
     }
   )
 }

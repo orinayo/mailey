@@ -4,6 +4,7 @@ const RecipientSchema = require('./Recipient')
 
 const SurveySchema = new Schema({
   title: String,
+  fromEmail: String,
   subject: String,
   body: String,
   recipients: [RecipientSchema],
@@ -12,6 +13,10 @@ const SurveySchema = new Schema({
     default: 0
   },
   no: {
+    type: Number,
+    default: 0
+  },
+  total: {
     type: Number,
     default: 0
   },

@@ -2,7 +2,7 @@ const regExpForEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a
 // Whitespace and commas at beginning and end
 const trailingCommaRegExp = /(^\s*,)|(,\s*$)/g
 
-export default recipients => {
+export const validateRecipients = recipients => {
   if (trailingCommaRegExp.test(recipients)) {
     return 'Remove any leading or trailing commas or whitespaces'
   }
@@ -20,4 +20,15 @@ export default recipients => {
   }
 
   return null
+}
+
+export const validateSendersEmail = fromEmail => {
+  if (trailingCommaRegExp.test(fromEmail)) {
+    return 'Remove any leading or trailing commas or whitespaces'
+  }
+
+  fromEmail.trim()
+  if (!regExpForEmail.test(fromEmail)) {
+    return 'This email is invalid'
+  }
 }
