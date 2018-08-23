@@ -11,15 +11,15 @@ html {
     #f4b142
   );
 }
-/* HEADER */
-.brand-logo {
-  text-transform: uppercase;
-  letter-spacing: .5rem;
-  font-weight: 300;
+
+.credits {
+ margin: .2rem 1.5rem;
 }
+
 /* BUTTONS */
 .btn, .btn:focus {
   background-color: #2134d5;
+  margin-right: .75rem;
 }
 
 .btn:hover {
@@ -104,6 +104,15 @@ html {
   )
 }
 
+/* TYPOGRAPHY */
+.heading__primary {
+  font-size: 7rem;
+  font-weight: 300;
+  color: #c40c21;
+  padding-top: 8rem;
+   margin-top: 0;
+}
+
 /* UTILITIES */
 .u-margin-top-small {
   margin-top: 2rem!important;
@@ -134,4 +143,35 @@ html {
   radial-gradient(circle at 100% 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent),
   radial-gradient(circle at 0    50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent);
   background-size:100px 50px;
+}
+/* MEDIA QUERIES */
+@media (max-width: 56.25em) {
+  .heading {
+    color: #c40c21;
+  }
+
+  .heading__primary {
+    color: white;
+  }
+
+  .btn {
+    font-size: .75em;
+    margin-right: .3em!important;
+    margin-left: .3em!important;
+  }
+
+  .credits {
+    margin-left: -1em;
+    margin-right: .3em!important;    
+  }
+
+  .brand-icon {
+    margin-left: -1em;
+  }
+}
+
+@media (min-width: 70em) {
+  .brand-icon {
+   font-size: 3.75rem!important;
+  }
 }

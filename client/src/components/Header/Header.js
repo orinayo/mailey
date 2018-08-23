@@ -18,7 +18,7 @@ class Header extends Component {
         return
       case false:
         return (
-          <li style={{marginRight: '1.5rem'}}>
+          <li>
             <a href='/auth/google' className='waves-effect waves-light btn btn-round'>
               Login With Google
               <i className='fab fa-google right' style={{lineHeight: '2.5rem'}}>
@@ -28,13 +28,13 @@ class Header extends Component {
         )
       default:
         return [
-          <li key='1' style={{margin: '.2rem 1.5rem'}}>
+          <li key='1' className='credits'>
             CREDITS: {auth.credits}
           </li>,
           <li key='2'>
             <StripeBilling />
           </li>,
-          <li key='3' style={{marginRight: '1.5rem'}}>
+          <li key='3'>
             <a href='/api/logout' className='waves-effect waves-light btn btn-round'>
               Logout
             </a>
@@ -51,7 +51,7 @@ class Header extends Component {
             className='left brand-logo'
             style={{marginLeft: '2rem'}}
           >
-            <i className='material-icons' style={{fontSize: '3.75rem'}}>email</i>
+            <i className='material-icons brand-icon'>email</i>
           </Link>
           <ul className='right'>
             {

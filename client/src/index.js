@@ -8,10 +8,6 @@ import thunkMiddleware from 'redux-thunk'
 import App from './containers/App'
 import reducers from './reducers/index'
 
-// Development only axios helpers!
-import axios from 'axios'
-window.axios = axios
-
 const logger = createLogger()
 const store = createStore(reducers, {}, applyMiddleware(thunkMiddleware, logger))
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.querySelector('#root'))

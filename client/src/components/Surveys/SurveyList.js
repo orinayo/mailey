@@ -46,12 +46,12 @@ class SurveyList extends Component {
     surveyTitles = []
     surveyVotesTotal = []
     backgroundColors = [] 
-    console.log('here')
+
     return this.props.surveys.map(({ _id, title, body, yes, no, dateSent, lastResponded, total }) => {
       surveyTitles.push(title)
       surveyVotesTotal.push(total)
       backgroundColors.push(`#${((Math.random() * 0xffffff) <<0).toString(16)}`) // Get random hex code
-      console.log(backgroundColors)
+
       return (
         <div className='card darken-1' key={_id}>
           <div className='card-content white-text'>
