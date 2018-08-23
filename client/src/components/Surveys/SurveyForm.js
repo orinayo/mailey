@@ -20,7 +20,7 @@ class SurveyForm extends Component {
   render () {
     return (
       <div>
-        <form className='u-margin-top-medium' onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)} >
+        <form className='form' onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)} >
           {
             this.renderFields()
           }

@@ -27,7 +27,7 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
   })
 
   return (
-    <div className='u-margin-top-medium'>
+    <div className='form-review'>
       <h5>Please confirm your entries</h5>
       <div>
         {

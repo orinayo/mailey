@@ -104,6 +104,11 @@ html {
   )
 }
 
+/* FORM */
+.form, .form-review {
+  margin-top: 4rem
+}
+
 /* TYPOGRAPHY */
 .heading__primary {
   font-size: 7rem;
@@ -167,6 +172,14 @@ html {
 
   .brand-icon {
     margin-left: -1em;
+  }
+
+  .form, .form-review {
+    margin-top: 2em;
+  }
+
+  .form-review > h5 {
+    font-size: 1.5em;
   }
 }
 
