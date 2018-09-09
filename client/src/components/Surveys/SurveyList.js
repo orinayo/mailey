@@ -83,7 +83,7 @@ class SurveyList extends Component {
 
   render () {
     return (
-      <div className='blue-grid' style={{borderRadius: '3px', height: '90vh'}}>
+      <div className='blue-grid' style={{borderRadius: '3px', height: '100%', paddingBottom: '1.5em'}}>
         <div className='container' style={{borderRadius: '3px', paddingTop: '2rem'}}>
           <div style={{textAlign: 'center',  padding: '.75rem 0'}}>
             <button
